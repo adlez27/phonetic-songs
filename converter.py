@@ -1,6 +1,7 @@
 import sys
 import re
 import pronouncing
+from pathlib import Path
 
 
 def arpabet_to_xsampa(text):
@@ -36,9 +37,12 @@ def arpabet_to_xsampa(text):
     return text
 
 
-def convert_song(lyrics):
-    converted_lyrics = ""
+def convert_song(raw_lyrics):
+    lyrics = raw_lyrics.split('\n')
+    for i in range(0, len(lyrics)):
+        lyrics[i] = lyrics[i].split(' ')
 
+    converted_lyrics = ""
     for line in lyrics:
         converted_line = " "
         for word in line:
@@ -59,16 +63,18 @@ def convert_song(lyrics):
     return converted_lyrics
 
 
-with open('in/' + sys.argv[1] + '.txt', 'r') as filename:
-    content = filename.read()
+basepath = Path('in/')
+files_in_basepath = (entry for entry in basepath.iterdir() if entry.is_file())
+for item in files_in_basepath:
+    item = str(item)
+    with open(item, 'r') as input:
+        content = input.read()
+    input.close()
 
-lyrics = content.split('\n')
-for i in range(0, len(lyrics)):
-    lyrics[i] = lyrics[i].split(' ')
+    with open('out/' + item[3:], 'w') as output:
+        output.write(convert_song(content))
+    output.close()
 
-lyrics = convert_song(lyrics)
-
-with open('out/' + sys.argv[1] + '.txt', 'w') as output:
-    output.write(lyrics)
+    print("Converted: " + item[3:-4])
 
 exit()

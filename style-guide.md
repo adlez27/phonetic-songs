@@ -7,14 +7,14 @@ Phoneme | Description | Example words | Notes
 ``A` `` | rhotacized open back unrounded vowel | bar<br>``b A` ``
 `{` | near-open front unrounded vowel | bat<br>`b { t_}`
 `e@` | diphthong of close-mid front unrounded vowel to schwa | and<br>`e@ n d` | May sound like `{` or `E` depending on context and the singer's accent
-`E~` | nasalized open-mid front unrounded vowel | bank<br>`b E~ N k` | May sound like `{` depending on the singer's accent
+`E_~` | nasalized open-mid front unrounded vowel | bank<br>`b E_~ N k` | May sound like `{` depending on the singer's accent
 `V` | open-mid back unrounded vowel | but<br>`b V t_}`
 `Q` | open back rounded vowel | ball<br>`b Q 5`
 `O` | open-mid back rounded vowel | bowl<br>`b O 5`
-``O` `` | rhotacized open-mid back rounded vowel | pour<br>`p_h O`
+``O` `` | rhotacized open-mid back rounded vowel | pour<br>``p_h O` ``
 `@` | schwa | about<br>`@ b aU t_}` | Most vowels reduce to this in short, unstressed syllables
 `E` | open-mid front unrounded vowel | end<br>`E n d`
-``e` `` | rhotacized close-mid front unrounded vowel | bear<br>`b e`
+``e` `` | rhotacized close-mid front unrounded vowel | bear<br>``b e` ``
 `3` | open-mid central unrounded vowel | bird<br>`b 3 d`
 `I` | near-close front unrounded vowel | bin<br>`b I n`
 `I_~` | nasalized near-close front unrounded vowel | ping<br>`p I_~ N` | Allophone of `I` before `N`

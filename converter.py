@@ -67,18 +67,23 @@ def convert_song(raw_lyrics):
     return converted_lyrics
 
 
-basepath = Path('in/')
-files_in_basepath = (entry for entry in basepath.iterdir() if entry.is_file())
-for item in files_in_basepath:
-    item = str(item)
-    with open(item, 'r') as input:
-        content = input.read()
-    input.close()
+if Path('in/').exists():
+    basepath = Path('in/')
+    files_in_basepath = (entry for entry in basepath.iterdir() if entry.is_file())
+    for item in files_in_basepath:
+        item = str(item)
+        with open(item, 'r') as input:
+            content = input.read()
+        input.close()
 
-    with open('out/' + item[3:], 'w') as output:
-        output.write(convert_song(content))
-    output.close()
+        if not (Path('out/').exists()):
+            os.mkdir('out')
+        with open('out/' + item[3:], 'w') as output:
+            output.write(convert_song(content))
+        output.close()
 
-    print("Converted: " + item[3:-4])
+        print("Converted: " + item[3:-4])
+else:
+    print('No songs to convert.')
 
 exit()

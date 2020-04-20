@@ -1,8 +1,22 @@
+import os
 import sys
 import re
-import pronouncing
+
+try:
+    import pathlib
+except ImportError:
+    print("Trying to install required module: pathlib\n")
+    os.system('python -m pip install pathlib')
+
 from pathlib import Path
 
+try:
+    import pronouncing
+except ImportError:
+    print("Trying to install required module: pronouncing\n")
+    os.system('python -m pip install pronouncing')
+
+import pronouncing
 
 def arpabet_to_xsampa(text):
     text = text.replace(' aa ', ' A ')

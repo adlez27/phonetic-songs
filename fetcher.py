@@ -1,11 +1,13 @@
 import os
 from pathlib import Path
+
+# TODO: replace this with something that works more consistently
 print('Ensuring dependencies exist...\n')
 try:
     from azapi import AZlyrics
 except ImportError:
     print('Trying to install required module: azapi\n')
-    os.system('pip install azapi')
+    os.system('pip3 install azapi')
     from azapi import AZlyrics
     print()
 # try:

@@ -1,12 +1,19 @@
 import os
 import re
 from pathlib import Path
+
+# TODO: replace this with something that works more consistently
 try:
     import pronouncing
 except ImportError:
     print("Trying to install required module: pronouncing\n")
-    os.system('pip install pronouncing')
+    os.system('python3 -m pip install pronouncing')
     import pronouncing
+
+
+def clean_lyrics(text):
+    text = re.sub(r'[^a|A-z|Z;^0-9;^ ;^\';^\n]', '', text)
+    return text
 
 
 def arpabet_to_xsampa(text):
@@ -43,7 +50,7 @@ def arpabet_to_xsampa(text):
 
 
 def convert_song(raw_lyrics):
-    lyrics = raw_lyrics.split('\n')
+    lyrics = clean_lyrics(raw_lyrics).split('\n')
     for i in range(0, len(lyrics)):
         lyrics[i] = lyrics[i].split(' ')
 
@@ -62,15 +69,16 @@ def convert_song(raw_lyrics):
                 converted_line += phonemes + " "
         converted_line = arpabet_to_xsampa(converted_line)
         converted_line = converted_line[1:-1]
-        converted_lyrics += converted_line + "\r\n"
+        if converted_line != "**":
+            converted_lyrics += converted_line + "\r\n"
 
-    converted_lyrics = re.sub(r'\r\n\*\*\r\n', '', converted_lyrics)
     return converted_lyrics
 
 
 if Path('in/').exists():
     basepath = Path('in/')
-    files_in_basepath = (entry for entry in basepath.iterdir() if entry.is_file())
+    files_in_basepath = (entry for entry in basepath.iterdir() if
+                         entry.is_file())
     for item in files_in_basepath:
         item = str(item)
         with open(item, 'r') as input:

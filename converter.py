@@ -5,7 +5,8 @@ try:
     import pronouncing
 except ImportError:
     print("Trying to install required module: pronouncing\n")
-    os.system('python -m pip install pronouncing')
+    os.system('python3 -m pip install pronouncing')
+    import pronouncing
 
 
 def arpabet_to_xsampa(text):

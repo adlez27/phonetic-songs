@@ -5,7 +5,7 @@ try:
     import pronouncing
 except ImportError:
     print("Trying to install required module: pronouncing\n")
-    os.system('python3 -m pip install pronouncing')
+    os.system('pip install pronouncing')
     import pronouncing
 
 

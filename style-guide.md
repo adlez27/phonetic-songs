@@ -33,7 +33,7 @@ Phoneme | Description | Example words | Notes
 `5_=` | syllabic velarized alveolar approximant | pull<br>`p 5_=`
 `m_=` | syllabic bilabial nasal | get 'em<br>`g E 4 m_=` | Short, unstressed syllables
 `n_=` | syllabic alveolar nasal | gettin'<br>`g E t_} n_=` | Short, unstressed syllables
-`N_=` | syllabic velar nasal | Winter I need an example | Short, unstressed syllables
+`N_=` | syllabic velar nasal | wait and go<br>`w eI ? N_= g oU` | Short, unstressed syllables
 
 ## Consonants
 Phoneme | Description | Example words | Notes

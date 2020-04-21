@@ -1,31 +1,13 @@
 import os
-import random
 import sys
 from pathlib import Path
 print('Ensuring dependencies exist...\n')
 # for AZlyrics
-try:
-    from azapi import AZlyrics
-except ImportError:
-    print('Trying to install required module: azapi\n')
-    os.system('python3 -m pip install azapi')
-    from azapi import AZlyrics
-    print()
+from azapi import AZlyrics
 # for VocaDB
-try:
-    import nodejs
-except ImportError:
-    print('Trying to install required module: nodejs\n')
-    os.system('python3 -m pip install nodejs')
-    import nodejs
-    print()
+import nodejs
 # for MetroLyrics
-try:
-    import tswift
-except ImportError:
-    print('Trying to install required module: tswift\n')
-    os.system('python3 -m pip install tswift')
-    import tswift
+import tswift
 
 class color:
     PURPLE = '\033[95m'

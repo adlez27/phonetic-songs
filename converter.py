@@ -87,7 +87,7 @@ if Path('in/').exists():
 
         if not (Path('out/').exists()):
             os.mkdir('out')
-        with open('out/' + item[3:], 'w') as output:
+        with open('out/' + item[3:-4] + " T.txt", 'w') as output:
             output.write(convert_song(content))
         output.close()
 

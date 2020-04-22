@@ -1,15 +1,13 @@
+"""fetcher.py allows the user to fetch lyrics from numerous APIs and
+save them as a text file in the /in directory.
+"""
 import os
 import sys
 from pathlib import Path
-print('Ensuring dependencies exist...\n')
-# for AZlyrics
-from azapi import AZlyrics
-# for VocaDB
-import nodejs
-# for MetroLyrics
-import tswift
 
-class color:
+
+class Color:
+    """Color definitions"""
     PURPLE = '\033[95m'
     CYAN = '\033[96m'
     DARKCYAN = '\033[36m'
@@ -21,20 +19,24 @@ class color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
 
-print('fetcher.py fetches lyrics from various APIs. Please choose which one you would like to use.')
+
+print('fetcher.py fetches lyrics from various APIs. '
+      'Please choose which one you would like to use.')
 print('1. AZLyrics.com (azapi)')
-print('2. VocaDB (currently not available)')
+print('2. VocaDB')
 print('3. Genius (currently not available)')
-print(color.BOLD + '4. MetroLyrics (tswift) - RECOMMENDED' + color.END)
+print(Color.BOLD + '4. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
 print('To close, type "q"')
 option = input(': ')
 print()
 
 if not option == 'q':
-    # AZlyrics  
-    if option == '1': 
-        api = AZlyrics()
-        print('You can either get the song with the song title and artist name, or you can search via lyrics.')
+    # AZlyrics
+    if option == '1':
+        from azapi import AZlyrics
+        az_api = AZlyrics()
+        print('You can either get the song with the song title and artist'
+              'name, or you can search via lyrics.')
         print('Please choose which method you would like to use.')
         print('a. Artist Name + Song Title')
         print('b. Search by lyrics')
@@ -44,7 +46,8 @@ if not option == 'q':
             artist_name = input('Type in the name of the artist: ')
             song_title = input('Type in the title of the song: ')
 
-            lyrics = api.getLyrics(artist = artist_name, title = song_title, save=False).strip()
+            lyrics = az_api.getLyrics(
+                artist=artist_name, title=song_title, save=False).strip()
 
             filename = (artist_name + ' - ' + song_title + '.txt')
 
@@ -55,20 +58,20 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename,'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
                 export.write(lyrics)
                 export.close()
-            
+
             print('Downloaded: ' + filename)
         if az_option == 'b':
             search_terms = input('Enter lyrics: ')
 
-            songs = api.search(search_terms, category='songs')   
+            songs = az_api.search(search_terms, category='songs')
             artist_name = songs[0]['artist']
             song_title = songs[0]['name']
             song_url = songs[0]['url']
 
-            lyrics = api.getLyrics(url = song_url, save=False).strip()
+            lyrics = az_api.getLyrics(url=song_url, save=False).strip()
 
             filename = (artist_name + ' - ' + song_title + '.txt')
 
@@ -79,7 +82,7 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename,'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
                 export.write(lyrics)
                 export.close()
 
@@ -87,17 +90,62 @@ if not option == 'q':
 
     # VocaDB
     if option == '2':
-        print('This feature is not yet implemented. Try again later.\n')    
+        import requests
 
+        vdb_url = 'https://vocadb.net/api/'
+        search_type = ['artists', 'songs']
+        print('You can get the lyrics by searching with the song title'
+              ' and artist name.')
+
+        artist_name = input('Type in the name of the artist: ')
+        song_title = input('Type in the title of the song: ')
+
+        artist_payloid = {'query': artist_name,
+                          'namematchMode': 'Partial',
+                          'preferAccurateMatches': 'true'}
+        artist_search = requests.get(vdb_url + search_type[0],
+                                     artist_payloid)
+
+        artist_values = artist_search.json()
+        artist_title = artist_values['items'][0]['name']
+        print('Artist retrieved: ' + artist_title)
+        artist_id = artist_values['items'][0]['id']
+
+        song_payload = {'query': song_title, 'lang': 'English',
+                        'songTypes': 'Original', 'fields': 'Lyrics',
+                        'artistId': artist_id}
+        song_search = requests.get(vdb_url + search_type[1],
+                                   song_payload)
+
+        song_values = song_search.json()
+        song_name = song_values['items'][0]['name']
+        print('Song retrieved: ' + song_name)
+        lyrics_values = song_values['items'][0]['lyrics']
+        lyrics = lyrics_values[0]['value']
+
+        filename = (artist_title + ' - ' + song_name + '.txt')
+
+        if Path('in/').exists():
+            basepath = Path('in/')
+        else:
+            os.mkdir('in')
+            if Path('in/').exists():
+                basepath = Path('in/')
+
+        with open(basepath/filename, 'w', encoding='latin-1') as export:
+            export.write(lyrics)
+            export.close()
+
+        print('Downloaded: ' + filename)
     # Genius
     if option == '3':
-        print('This feature is not yet implemented. Try again later.\n')    
+        print('This feature is not yet implemented. Try again later.\n')
 
     # MetroLyrics
-    if option == '4':  
+    if option == '4':
         from tswift import Song
-        from tswift import Artist
-        print('You can either get the song with the song title and artist name, or you can search via lyrics.')
+        print('You can either get the song with the song title and artist'
+              'name, or you can search via lyrics.')
         print('Please choose which method you would like to use.')
         print('a. Artist Name + Song Title')
         print('b. Search by lyrics')
@@ -118,10 +166,10 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename,'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
                 export.write(lyrics.format())
                 export.close()
-            
+
             print('Downloaded: ' + filename)
         if ml_option == 'b':
             search_terms = input('Enter lyrics: ')
@@ -139,9 +187,9 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename,'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
                 export.write(lyrics.format())
                 export.close()
 
             print('Downloaded: ' + filename)
-exit()
+sys.exit()

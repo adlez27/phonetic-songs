@@ -22,17 +22,73 @@ class Color:
 
 print('fetcher.py fetches lyrics from various APIs. '
       'Please choose which one you would like to use.')
-print('1. AZLyrics.com (azapi)')
-print('2. VocaDB')
-print('3. Genius (currently not available)')
-print(Color.BOLD + '4. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
+print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
+print('2. Genius (currently not available)')
+print('3. AZLyrics.com (azapi)')
+print('4. VocaDB')
 print('To close, type "q"')
 option = input(': ')
 print()
 
 if not option == 'q':
-    # AZlyrics
+    # MetroLyrics
     if option == '1':
+        from tswift import Song
+        print('You can either get the song with the song title and artist'
+              'name, or you can search via lyrics.')
+        print('Please choose which method you would like to use.')
+        print('a. Artist Name + Song Title')
+        print('b. Search by lyrics')
+        ml_option = input(': ')
+
+        if ml_option == 'a':
+            artist_name = input('Type in the name of the artist: ')
+            song_title = input('Type in the title of the song: ')
+
+            lyrics = Song(title=song_title, artist=artist_name)
+
+            filename = (artist_name + ' - ' + song_title + '.txt')
+
+            if Path('in/').exists():
+                basepath = Path('in/')
+            else:
+                os.mkdir('in')
+                if Path('in/').exists():
+                    basepath = Path('in/')
+
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
+                export.write(lyrics.format())
+                export.close()
+
+            print('Downloaded: ' + filename)
+        if ml_option == 'b':
+            search_terms = input('Enter lyrics: ')
+
+            lyrics = Song.find_song(search_terms)
+            song_title = lyrics.title
+            artist_name = lyrics.artist
+
+            filename = (artist_name + ' - ' + song_title + '.txt')
+
+            if Path('in/').exists():
+                basepath = Path('in/')
+            else:
+                os.mkdir('in')
+                if Path('in/').exists():
+                    basepath = Path('in/')
+
+            with open(basepath/filename, 'w', encoding='latin-1') as export:
+                export.write(lyrics.format())
+                export.close()
+
+            print('Downloaded: ' + filename)
+
+    # Genius
+    if option == '2':
+        print('This feature is not yet implemented. Try again later.\n')
+
+    # AZlyrics
+    if option == '3':
         from azapi import AZlyrics
         az_api = AZlyrics()
         print('You can either get the song with the song title and artist'
@@ -89,7 +145,7 @@ if not option == 'q':
             print('Downloaded: ' + filename)
 
     # VocaDB
-    if option == '2':
+    if option == '4':
         import requests
 
         vdb_url = 'https://vocadb.net/api/'
@@ -137,59 +193,4 @@ if not option == 'q':
             export.close()
 
         print('Downloaded: ' + filename)
-    # Genius
-    if option == '3':
-        print('This feature is not yet implemented. Try again later.\n')
-
-    # MetroLyrics
-    if option == '4':
-        from tswift import Song
-        print('You can either get the song with the song title and artist'
-              'name, or you can search via lyrics.')
-        print('Please choose which method you would like to use.')
-        print('a. Artist Name + Song Title')
-        print('b. Search by lyrics')
-        ml_option = input(': ')
-
-        if ml_option == 'a':
-            artist_name = input('Type in the name of the artist: ')
-            song_title = input('Type in the title of the song: ')
-
-            lyrics = Song(title=song_title, artist=artist_name)
-
-            filename = (artist_name + ' - ' + song_title + '.txt')
-
-            if Path('in/').exists():
-                basepath = Path('in/')
-            else:
-                os.mkdir('in')
-                if Path('in/').exists():
-                    basepath = Path('in/')
-
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
-                export.write(lyrics.format())
-                export.close()
-
-            print('Downloaded: ' + filename)
-        if ml_option == 'b':
-            search_terms = input('Enter lyrics: ')
-
-            lyrics = Song.find_song(search_terms)
-            song_title = lyrics.title
-            artist_name = lyrics.artist
-
-            filename = (artist_name + ' - ' + song_title + '.txt')
-
-            if Path('in/').exists():
-                basepath = Path('in/')
-            else:
-                os.mkdir('in')
-                if Path('in/').exists():
-                    basepath = Path('in/')
-
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
-                export.write(lyrics.format())
-                export.close()
-
-            print('Downloaded: ' + filename)
 sys.exit()

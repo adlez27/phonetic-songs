@@ -20,13 +20,18 @@ class Color:
     END = '\033[0m'
 
 
-print('fetcher.py fetches lyrics from various APIs. '
+print('fetcher.py fetches lyrics from various sources. '
       'Please choose which one you would like to use.')
+print('If you experience any bugs, feel free to report '
+      'at https://github.com/adlez27/phonetic-songs')
+print()
 print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
 print('2. Genius (currently not available)')
-print('3. AZLyrics.com (azapi)')
-print('4. VocaDB')
-print('5. UtaiteDB')
+print('3. AZLyrics.com (azapi) - ' + Color.UNDERLINE + 'NOT RECOMMENDED' + Color.END)
+print('4. VocaDB (REST)')
+print('5. UtaiteDB (REST)')
+print('6. TouhouDB (REST)')
+print('7. Piapro (currently not implemented)')
 print('To close, type "q"')
 option = input(': ')
 print()
@@ -57,7 +62,7 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='utf-8') as export:
                 export.write(lyrics.format())
                 export.close()
 
@@ -78,7 +83,7 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='utf-8') as export:
                 export.write(lyrics.format())
                 export.close()
 
@@ -115,7 +120,7 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='utf-8') as export:
                 export.write(lyrics)
                 export.close()
 
@@ -139,7 +144,7 @@ if not option == 'q':
                 if Path('in/').exists():
                     basepath = Path('in/')
 
-            with open(basepath/filename, 'w', encoding='latin-1') as export:
+            with open(basepath/filename, 'w', encoding='utf-8') as export:
                 export.write(lyrics)
                 export.close()
 
@@ -156,9 +161,16 @@ if not option == 'q':
 
         artist_name = input('Type in the name of the artist: ')
         song_title = input('Type in the title of the song: ')
+        print()
+        print('Specify whether the song is an "Original", "Remix", '
+              '"Cover", or "Arrangement" to help filter results.')
+        print('You can leave this field blank.')
+        song_type = input(': ')
+        print()
+
 
         artist_payloid = {'query': artist_name,
-                          'namematchMode': 'Partial',
+                          'namematchMode': 'Auto',
                           'preferAccurateMatches': 'true'}
         artist_search = requests.get(vdb_url + search_type[0],
                                      artist_payloid)
@@ -169,7 +181,7 @@ if not option == 'q':
         artist_id = artist_values['items'][0]['id']
 
         song_payload = {'query': song_title, 'lang': 'English',
-                        'songTypes': 'Original', 'fields': 'Lyrics',
+                        'songTypes': song_type, 'fields': 'Lyrics',
                         'artistId': artist_id,
                         'defaultNameLanguage': 'English'}
         song_search = requests.get(vdb_url + search_type[1],
@@ -190,7 +202,7 @@ if not option == 'q':
             if Path('in/').exists():
                 basepath = Path('in/')
 
-        with open(basepath/filename, 'w', encoding='latin-1') as export:
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
             export.write(lyrics)
             export.close()
 
@@ -207,9 +219,15 @@ if not option == 'q':
 
         artist_name = input('Type in the name of the artist: ')
         song_title = input('Type in the title of the song: ')
+        print()
+        print('Specify whether the song is an "Original", "Remix", '
+              '"Cover", or "Arrangement" to help filter results.')
+        print('You can leave this field blank.')
+        song_type = input(': ')
+        print()
 
         artist_payloid = {'query': artist_name,
-                          'namematchMode': 'Partial',
+                          'namematchMode': 'Auto',
                           'preferAccurateMatches': 'true'}
         artist_search = requests.get(udb_url + search_type[0],
                                      artist_payloid)
@@ -220,9 +238,8 @@ if not option == 'q':
         artist_id = artist_values['items'][0]['id']
 
         song_payload = {'query': song_title, 'lang': 'English',
-                        'songTypes': 'Original', 'fields': 'Lyrics',
-                        'artistId': artist_id,
-                        'defaultNameLanguage': 'English'}
+                        'songTypes': song_type, 'fields': 'Lyrics',
+                        'artistId': artist_id}
         song_search = requests.get(udb_url + search_type[1],
                                    song_payload)
 
@@ -241,9 +258,69 @@ if not option == 'q':
             if Path('in/').exists():
                 basepath = Path('in/')
 
-        with open(basepath/filename, 'w', encoding='latin-1') as export:
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
             export.write(lyrics)
             export.close()
 
         print('Downloaded: ' + filename)
+
+    # TouhouDB
+    if option == '6':
+        import requests
+
+        tdb_url = 'https://touhoudb.com/api/'
+        search_type = ['artists', 'songs']
+        print('You can get the lyrics by searching with the song title'
+              ' and artist name.')
+
+        artist_name = input('Type in the name of the artist: ')
+        song_title = input('Type in the title of the song: ')
+        print()
+        print('Specify whether the song is an "Original", "Remix", '
+              '"Cover", or "Arrangement" to help filter results.')
+        print('You can leave this field blank.')
+        song_type = input(': ')
+        print()
+
+        artist_payloid = {'query': artist_name,
+                          'namematchMode': 'Auto',
+                          'preferAccurateMatches': 'true'}
+        artist_search = requests.get(tdb_url + search_type[0],
+                                     artist_payloid)
+
+        artist_values = artist_search.json()
+        artist_title = artist_values['items'][0]['name']
+        print('Artist retrieved: ' + artist_title)
+        artist_id = artist_values['items'][0]['id']
+
+        song_payload = {'query': song_title, 'lang': 'English',
+                        'songTypes': song_type, 'fields': 'Lyrics',
+                        'artistId': artist_id}
+        song_search = requests.get(tdb_url + search_type[1],
+                                   song_payload)
+
+        song_values = song_search.json()
+        song_name = song_values['items'][0]['name']
+        print('Song retrieved: ' + song_name)
+        lyrics_values = song_values['items'][0]['lyrics']
+        lyrics = lyrics_values[0]['value']
+
+        filename = (artist_title + ' - ' + song_name + '.txt')
+
+        if Path('in/').exists():
+            basepath = Path('in/')
+        else:
+            os.mkdir('in')
+            if Path('in/').exists():
+                basepath = Path('in/')
+
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
+            export.write(lyrics)
+            export.close()
+
+        print('Downloaded: ' + filename)
+
+    # Piapro
+    if option == '7':
+        print('This feature is not yet implemented, please try again later.')
 sys.exit()

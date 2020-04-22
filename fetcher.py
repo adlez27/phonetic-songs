@@ -26,11 +26,11 @@ print('If you experience any bugs, feel free to report '
       'at https://github.com/adlez27/phonetic-songs')
 print()
 print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
-print('2. Genius (currently not available)')
+print('2. Genius')
 print('3. AZLyrics.com (azapi) - ' + Color.UNDERLINE + 'NOT RECOMMENDED' + Color.END)
-print('4. VocaDB (REST)')
-print('5. UtaiteDB (REST)')
-print('6. TouhouDB (REST)')
+print('4. VocaDB')
+print('5. UtaiteDB')
+print('6. TouhouDB')
 print('7. Piapro (currently not implemented)')
 print('To close, type "q"')
 option = input(': ')
@@ -91,7 +91,78 @@ if not option == 'q':
 
     # Genius
     if option == '2':
-        print('This feature is not yet implemented. Try again later.\n')
+        # Adapted: https://bigishdata.com/2016/09/27/getting-song-lyrics-from-geniuss-api-scraping/
+        import requests
+        from bs4 import BeautifulSoup
+
+        site_url = 'https://genius.com'
+        base_url = 'https://api.genius.com'
+        search_path = '/search'
+
+        with open('token.txt', 'r') as token:
+            genius_token = token.read()
+        headers = {'Authorization': 'Bearer ' + genius_token}
+
+        print('You can get the lyrics by searching with the song title'
+              ' and the artist name')
+        artist_name = input('Type in the name of the artist: ')
+        song_title = input('Type in the title of the song: ')
+        params = {'q': song_title}
+
+        response = requests.get(base_url + search_path, params=params, headers=headers)
+        json = response.json()
+        song_info = None
+
+        for hit in json['response']['hits']:
+            if hit['result']['primary_artist']['name'] == artist_name:
+                song_info = hit
+                break
+        if song_info:
+            pass
+
+        def lyric_fetcher_genius(song_api_path):
+            '''Lyric Fetching from Genius using API and HTML scraping'''
+            song_url = base_url + song_api_path
+            response = requests.get(song_url, headers=headers)
+            json = response.json()
+            song_path = json["response"]["song"]["path"]
+
+            page_url = site_url + song_path
+            page = requests.get(page_url)
+            html = BeautifulSoup(page.text, 'html.parser')
+            [h.extract() for h in html('script')]
+            [h.extract() for h in html('[]')]
+            lyrics_get = html.find("div", class_="lyrics").get_text()
+            return lyrics_get
+
+        if __name__ == "__main__":
+            search_url = base_url + "/search"
+            data = {'q': song_title}
+            response = requests.get(search_url, data=data, headers=headers)
+            json = response.json()
+            song_info = None
+            for hit in json["response"]["hits"]:
+                if hit["result"]["primary_artist"]["name"] == artist_name:
+                    song_info = hit
+                    break
+            if song_info:
+                song_api_path = song_info["result"]["api_path"]
+                lyrics = lyric_fetcher_genius(song_api_path)
+
+        filename = (artist_name + ' - ' + song_title + '.txt')
+
+        if Path('in/').exists():
+            basepath = Path('in/')
+        else:
+            os.mkdir('in')
+            if Path('in/').exists():
+                basepath = Path('in/')
+
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
+            export.write(lyrics)
+            export.close()
+
+        print('Downloaded: ' + filename)
 
     # AZlyrics
     if option == '3':

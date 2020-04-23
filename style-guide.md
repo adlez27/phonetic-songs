@@ -46,6 +46,7 @@ Phoneme | Description | Example words | Notes
 `t_h` | aspirated voiceless alveolar plosive | tubs<br>`t_h V b z` | Beginning of syllable
 `t_}` | unreleased voiceless alveolar plosive | pat<br>`p_h { t_}` | End of syllable
 `d` | voiced alveolar plosive | dawn<br>`d Q n`
+`d_h` | aspirated voiced alveolar plosive | did<br>`d_h I d_h` | Beginning of syllable
 `k` | voiceless velar plosive | scan<br>`s k e@ n` | In consonant clusters
 `k_h` | aspirated voiceless velar plosive | cup<br>`k_h V p_}` | Beginning of syllable
 `k_}` | unreleased voiceless velar plosive | stick<br>`s t I k_}` | End of syllable

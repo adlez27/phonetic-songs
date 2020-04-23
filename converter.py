@@ -1,22 +1,23 @@
+"""converter.py allows the user to convert English words to X-SAMPA
+from text files in /in with the use of the module pronouncing, and
+converts ARPABET phonemes to X-SAMPA before saving the output in
+a text  file in the /out directory.
+"""
 import os
 import re
+import sys
 from pathlib import Path
-
-# TODO: replace this with something that works more consistently
-try:
-    import pronouncing
-except ImportError:
-    print("Trying to install required module: pronouncing\n")
-    os.system('python3 -m pip install pronouncing')
-    import pronouncing
+import pronouncing
 
 
 def clean_lyrics(text):
+    """Removes unnecessary characters."""
     text = re.sub(r'[^a|A-z|Z;^0-9;^ ;^\';^\n]', '', text)
     return text
 
 
 def arpabet_to_xsampa(text):
+    """Converts ARPABET phonemes to X-SAMPA"""
     text = text.replace(' aa ', ' A ')
     text = text.replace(' ae ', ' { ')
     text = text.replace(' ah ', ' V ')
@@ -50,6 +51,7 @@ def arpabet_to_xsampa(text):
 
 
 def convert_song(raw_lyrics):
+    """Conversion of text files in /in to /out"""
     lyrics = clean_lyrics(raw_lyrics).split('\n')
     for i in range(0, len(lyrics)):
         lyrics[i] = lyrics[i].split(' ')
@@ -71,7 +73,6 @@ def convert_song(raw_lyrics):
         converted_line = converted_line[1:-1]
         if converted_line != "**":
             converted_lyrics += converted_line + "\r\n"
-
     return converted_lyrics
 
 
@@ -81,11 +82,11 @@ if Path('in/').exists():
                          entry.is_file())
     for item in files_in_basepath:
         item = str(item)
-        with open(item, 'r') as input:
-            content = input.read()
-        input.close()
+        with open(item, 'r') as Input:
+            content = Input.read()
+        Input.close()
 
-        if not (Path('out/').exists()):
+        if not Path('out/').exists():
             os.mkdir('out')
         with open('out/' + item[3:-4] + " T.txt", 'w') as output:
             output.write(convert_song(content))
@@ -95,4 +96,4 @@ if Path('in/').exists():
 else:
     print('No songs to convert.')
 
-exit()
+sys.exit()

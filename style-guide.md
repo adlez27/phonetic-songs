@@ -4,33 +4,36 @@ Subset of X-SAMPA to be used for song transcriptions. If the original singer's p
 Phoneme | Description | Example words | Notes
 --- | --- | --- | ---
 `A` | open back unrounded vowel | cot<br>`k_h A t_}`
-``A` `` | rhotacized open back unrounded vowel | bar<br>``b A` ``
+``A` `` | rhotacized open back unrounded vowel | bar<br>``b A` `` | Usually `A` in non-rhotic accents
 `{` | near-open front unrounded vowel | bat<br>`b { t_}`
 `e@` | diphthong of close-mid front unrounded vowel to schwa | and<br>`e@ n d` | May sound like `{` or `E` depending on context and the singer's accent
 `E_~` | nasalized open-mid front unrounded vowel | bank<br>`b E_~ N k` | May sound like `{` depending on the singer's accent
 `V` | open-mid back unrounded vowel | but<br>`b V t_}`
 `Q` | open back rounded vowel | ball<br>`b Q 5`
 `O` | open-mid back rounded vowel | bowl<br>`b O 5`
-``O` `` | rhotacized open-mid back rounded vowel | pour<br>``p_h O` ``
+``O` `` | rhotacized open-mid back rounded vowel | pour<br>``p_h O` `` | Usually `O` in non-rhotic accents
 `@` | schwa | about<br>`@ b aU t_}` | Most vowels reduce to this in short, unstressed syllables
 `E` | open-mid front unrounded vowel | end<br>`E n d`
-``e` `` | rhotacized close-mid front unrounded vowel | bear<br>``b e` ``
+``e` `` | rhotacized close-mid front unrounded vowel | bear<br>``b e` `` | Usually `E@` in non-rhotic accents
 `3` | open-mid central unrounded vowel | bird<br>`b 3 d`
 `I` | near-close front unrounded vowel | bin<br>`b I n`
 `I_~` | nasalized near-close front unrounded vowel | ping<br>`p I_~ N` | Allophone of `I` before `N`
 `1` | close central unrounded vowel | woman<br>`w U m 1 n` | High vowels reduce to this in short, unstressed syllables
 `i` | close front unrounded vowel | bean<br>`b i n`
-``i` `` | rhotacized close front unrounded vowel | beer<br>``b i` ``
+``i` `` | rhotacized close front unrounded vowel | beer<br>``b i` `` | Usually `I@` in non-rhotic accents
 `U` | near-close back rounded vowel | push<br>`p U S`
-``U` `` | rhotacized near-close back rounded vowel | poor<br>``p U` ``
+``U` `` | rhotacized near-close back rounded vowel | poor<br>``p U` `` | Usually `U@` in non-rhotic accents
 `u` | close back rounded vowel | boom `b u m`
-`aI` | diphthong of open front unrounded vowel to near-close front unrounded vowel | bye<br>`b aI`
+`aI` | diphthong of open front unrounded vowel to near-close front unrounded vowel | bye<br>`b aI` | End of diphthong is often dropped, transcribe as `a`
 `eI` | diphthong of close-mid front unrounded vowel to near-close front unrounded vowel | bay<br>`b eI`
 `OI` | diphthong of open-mid back rounded vowel to near-close front unrounded vowel | boy<br>`b OI`
 `oU` | diphthong of close-mid back rounded vowel to near-close back rounded vowel | no<br>`n oU` | May sound like `@U` depending on the singer's accent
 `aU` | diphthong of open front unrounded vowel to near-close back rounded vowel | how<br>`h aU`
 `aU_~` | nasalized diphthong of open front unrounded vowel to near-close back rounded vowel | pound<br>`p aU_~ n d` | Allophone of `aU` before nasal consonants
 `5_=` | syllabic velarized alveolar approximant | pull<br>`p 5_=`
+`m_=` | syllabic bilabial nasal | get 'em<br>`g E 4 m_=` | Short, unstressed syllables
+`n_=` | syllabic alveolar nasal | gettin'<br>`g E t_} n_=` | Short, unstressed syllables
+`N_=` | syllabic velar nasal | wait and go<br>`w eI ? N_= g oU` | Short, unstressed syllables
 
 ## Consonants
 Phoneme | Description | Example words | Notes
@@ -63,6 +66,7 @@ Phoneme | Description | Example words | Notes
 `?` | glottal stop | uh-oh<br>`V ? oU`
 `m` | bilabial nasal | month<br>`m V n T`
 `n` | alveolar nasal | none<br>`n V n`
+`4_~` | nasalized alveolar flap | winter<br>`w I 4_~ 3`
 `N` | velar nasal | song<br>`s Q N`
 `l` | alveolar lateral approximant | love<br>`l V v` | Beginning of syllable
 `5` | velarized alveolar approximant | ball<br>`b Q 5` | End of syllable

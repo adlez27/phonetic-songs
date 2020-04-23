@@ -78,8 +78,8 @@ def convert_song(raw_lyrics):
 
 if Path('in/').exists():
     basepath = Path('in/')
-    files_in_basepath = (
-        entry for entry in basepath.iterdir() if entry.is_file())
+    files_in_basepath = (entry for entry in basepath.iterdir() if
+                         entry.is_file())
     for item in files_in_basepath:
         item = str(item)
         with open(item, 'r') as Input:
@@ -88,9 +88,9 @@ if Path('in/').exists():
 
         if not Path('out/').exists():
             os.mkdir('out')
-        with open('out/' + item[3:], 'w') as Output:
-            Output.write(convert_song(content))
-        Output.close()
+        with open('out/' + item[3:-4] + " T.txt", 'w') as output:
+            output.write(convert_song(content))
+        output.close()
 
         print("Converted: " + item[3:-4])
 else:

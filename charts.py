@@ -37,7 +37,7 @@ if permission != 'q':
                 song = chart[i]
                 song_title = song.title
                 artist_name = song.artist
-                line = (song_title + ';' + artist_name + '\r\n')
+                line = (song_title + ';' + artist_name + '\n')
                 i = i + 1
                 export.write(line)
             export.close()

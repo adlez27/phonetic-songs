@@ -92,6 +92,10 @@ if Path('in/').exists():
             output.write(convert_song(content))
         output.close()
 
+        if not Path('in/converted').exists():
+            os.mkdir('in/converted')
+        os.rename('in/' + item[3:-4] + '.txt', 'in/converted/' + item[3:-4] + '.txt')
+
         print("Converted: " + item[3:-4])
 else:
     print('No songs to convert.')

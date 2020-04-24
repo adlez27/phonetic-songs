@@ -21,8 +21,8 @@ if permission != 'q':
         chart_name = value
         chart = ChartData(chart_name)
         chart_count = len(chart)
-        filename = (chart.title + '.csv')
-        print(filename)
+        filename = (key + '.csv')
+        # print('Fetching ' +     filename)
 
         if Path('charts/').exists():
             basepath = Path('charts/')

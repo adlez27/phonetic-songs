@@ -1,3 +1,11 @@
+.gitignore
+.mypy_cache
+.vscode
+/charts
 /in
 /out
-*.todo
+.charts.py
+.google-cookie
+chart_verify.py
+charts.json
+token.txt

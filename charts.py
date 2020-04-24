@@ -21,8 +21,8 @@ if permission != 'q':
         chart_name = value
         chart = ChartData(chart_name)
         chart_count = len(chart)
-        filename = (chart.title + '.csv')
-        print(filename)
+        filename = (key + '.csv')
+        # print('Fetching ' +     filename)
 
         if Path('charts/').exists():
             basepath = Path('charts/')
@@ -37,7 +37,7 @@ if permission != 'q':
                 song = chart[i]
                 song_title = song.title
                 artist_name = song.artist
-                line = (song_title + ';' + artist_name + '\r\n')
+                line = (song_title + ';' + artist_name + '\n')
                 i = i + 1
                 export.write(line)
             export.close()

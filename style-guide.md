@@ -6,7 +6,7 @@ Phoneme | Description | Example words | Notes
 `A` | open back unrounded vowel | cot<br>`k_h A t_}`
 ``A` `` | rhotacized open back unrounded vowel | bar<br>``b A` `` | Usually `A` in non-rhotic accents
 `{` | near-open front unrounded vowel | bat<br>`b { t_}`
-`e@` | diphthong of close-mid front unrounded vowel to schwa | and<br>`e@ n d` | May sound like `{` or `E` depending on context and the singer's accent
+`e@` | diphthong of close-mid front unrounded vowel to schwa | and<br>`e@ n d` | Transcribe as `e` when coda is dropped or delayed. May sound like `{` or `E` depending on context and the singer's accent
 `E_~` | nasalized open-mid front unrounded vowel | bank<br>`b E_~ N k` | May sound like `{` depending on the singer's accent
 `V` | open-mid back unrounded vowel | but<br>`b V t_}`
 `Q` | open back rounded vowel | ball<br>`b Q 5`
@@ -24,12 +24,12 @@ Phoneme | Description | Example words | Notes
 `U` | near-close back rounded vowel | push<br>`p U S`
 ``U` `` | rhotacized near-close back rounded vowel | poor<br>``p U` `` | Usually `U@` in non-rhotic accents
 `u` | close back rounded vowel | boom `b u m`
-`aI` | diphthong of open front unrounded vowel to near-close front unrounded vowel | bye<br>`b aI` | End of diphthong is often dropped, transcribe as `a`
-`eI` | diphthong of close-mid front unrounded vowel to near-close front unrounded vowel | bay<br>`b eI`
-`OI` | diphthong of open-mid back rounded vowel to near-close front unrounded vowel | boy<br>`b OI`
-`oU` | diphthong of close-mid back rounded vowel to near-close back rounded vowel | no<br>`n oU` | May sound like `@U` depending on the singer's accent
-`aU` | diphthong of open front unrounded vowel to near-close back rounded vowel | how<br>`h aU`
-`aU_~` | nasalized diphthong of open front unrounded vowel to near-close back rounded vowel | pound<br>`p aU_~ n d` | Allophone of `aU` before nasal consonants
+`aI` | diphthong of open front unrounded vowel to near-close front unrounded vowel | bye<br>`b aI` | Transcribe as `a` when coda is dropped or delayed
+`eI` | diphthong of close-mid front unrounded vowel to near-close front unrounded vowel | bay<br>`b eI` | Transcribe as `e` when coda is dropped or delayed
+`OI` | diphthong of open-mid back rounded vowel to near-close front unrounded vowel | boy<br>`b OI` | Transcribe as `O` when coda is dropped or delayed
+`oU` | diphthong of close-mid back rounded vowel to near-close back rounded vowel | no<br>`n oU` | May sound like `@U` depending on the singer's accent. Transcribe with first vowel only when coda is dropped or delayed
+`aU` | diphthong of open front unrounded vowel to near-close back rounded vowel | how<br>`h aU` | Transcribe as `a` when coda is dropped or delayed
+`aU_~` | nasalized diphthong of open front unrounded vowel to near-close back rounded vowel | pound<br>`p aU_~ n d` | Occasional allophone of `aU` before nasal consonants. Transcribe as `a_~` when coda is dropped or delayed
 `5_=` | syllabic velarized alveolar approximant | pull<br>`p 5_=`
 `m_=` | syllabic bilabial nasal | get 'em<br>`g E 4 m_=` | Short, unstressed syllables
 `n_=` | syllabic alveolar nasal | gettin'<br>`g E t_} n_=` | Short, unstressed syllables
@@ -45,7 +45,8 @@ Phoneme | Description | Example words | Notes
 `t` | voiceless alveolar plosive | stick<br>`s t I k_}` | In consonant clusters
 `t_h` | aspirated voiceless alveolar plosive | tubs<br>`t_h V b z` | Beginning of syllable
 `t_}` | unreleased voiceless alveolar plosive | pat<br>`p_h { t_}` | End of syllable
-`d` | voiced alveolar plosive | dawn<br>`d Q n`
+`d` | voiced alveolar plosive | add<br>`{ d`
+`d_h` | aspirated voiced alveolar plosive | dawn `d_h Q n` | Beginning of syllable
 `k` | voiceless velar plosive | scan<br>`s k e@ n` | In consonant clusters
 `k_h` | aspirated voiceless velar plosive | cup<br>`k_h V p_}` | Beginning of syllable
 `k_}` | unreleased voiceless velar plosive | stick<br>`s t I k_}` | End of syllable

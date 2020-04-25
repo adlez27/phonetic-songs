@@ -67,7 +67,7 @@ if not option == 'q':
                 export.write(lyrics.format())
                 export.close()
 
-            print('Downloaded: ' + filename)
+            print('Downloaded: ' + artist_name + ' - ' + song_title)
         if ml_option == 'b':
             search_terms = input('Enter lyrics: ')
 
@@ -88,7 +88,7 @@ if not option == 'q':
                 export.write(lyrics.format())
                 export.close()
 
-            print('Downloaded: ' + filename)
+            print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # Genius
     if option == '2':
@@ -172,7 +172,7 @@ if not option == 'q':
                 export.write(lyrics)
                 export.close()
 
-            print('Downloaded: ' + filename)
+            print('Downloaded: ' + artist_name + ' - ' + song_title)
         if g_option == 'b':
             import csv
 
@@ -225,7 +225,7 @@ if not option == 'q':
                         export.write(lyrics)
                         export.close()
 
-                    print('Downloaded: ' + filename)
+                    print('Downloaded: ' + artist_name + ' - ' + song_title)
     # AZlyrics
     if option == '3':
         from azapi import AZlyrics
@@ -257,7 +257,7 @@ if not option == 'q':
                 export.write(lyrics)
                 export.close()
 
-            print('Downloaded: ' + filename)
+            print('Downloaded: ' + artist_name + ' - ' + song_title)
         if az_option == 'b':
             search_terms = input('Enter lyrics: ')
 
@@ -281,7 +281,7 @@ if not option == 'q':
                 export.write(lyrics)
                 export.close()
 
-            print('Downloaded: ' + filename)
+            print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # VocaDB
     if option == '4':
@@ -338,7 +338,7 @@ if not option == 'q':
             export.write(lyrics)
             export.close()
 
-        print('Downloaded: ' + filename)
+        print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # UtaiteDB
     if option == '5':
@@ -394,7 +394,7 @@ if not option == 'q':
             export.write(lyrics)
             export.close()
 
-        print('Downloaded: ' + filename)
+        print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # TouhouDB
     if option == '6':
@@ -450,7 +450,7 @@ if not option == 'q':
             export.write(lyrics)
             export.close()
 
-        print('Downloaded: ' + filename)
+        print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # Piapro
     if option == '7':

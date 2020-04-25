@@ -12,7 +12,7 @@ import pronouncing
 
 def clean_lyrics(text):
     """Removes unnecessary characters."""
-    text = re.sub(r'[^a|A-z|Z;^0-9;^ ;^\';^\n]', '', text)
+    text = re.sub(r'[^a|A-z|Z;^0-9;^ ;^\';^\-;^\n]', '', text)
     return text
 
 
@@ -82,7 +82,8 @@ if Path('in/').exists():
                          entry.is_file())
     for item in files_in_basepath:
         item = str(item)
-        with open(item, 'r') as Input:
+        with open(item, 'r', encoding='utf-8') as Input:
+            print('Opening: ' + item[3:-4])
             content = Input.read()
         Input.close()
 

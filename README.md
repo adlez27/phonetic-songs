@@ -1,3 +1,5 @@
+This fork is for script creation and maintenance done by [VocAddict](https://github.com/VocAddict) and may not be stable unlike the master branch. For the master branch, please refer to it [here](https://https://github.com/adlez27/phonetic-songs).
+
 # Phonetic Songs
 Repo of tools developed as part of the Phonetic Songs project for transcribing song lyrics in X-SAMPA
 

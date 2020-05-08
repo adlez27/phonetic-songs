@@ -89,15 +89,15 @@ if Path('in/').exists():
 
         if not Path('out/').exists():
             os.mkdir('out')
-        with open('out/' + item[3:-4] + " T.txt", 'w') as output:
-            output.write(convert_song(content))
-        output.close()
+        with open('out/' + item[3:-4] + " T.txt", 'w') as Output:
+            Output.write(convert_song(content))
+        Output.close()
 
         if not Path('in/converted').exists():
             os.mkdir('in/converted')
         os.rename('in/' + item[3:-4] + '.txt', 'in/converted/' + item[3:-4] + '.txt')
 
-        print("Converted: " + item[3:-4])
+        print('Converted: ' + item[3:-4])
 else:
     print('No songs to convert.')
 

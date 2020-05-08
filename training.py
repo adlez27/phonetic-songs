@@ -41,10 +41,11 @@ if not option == 'q':
         if Path('out/').exists():
             read_files = glob.glob('out/*.txt')
 
-            if not Path('model/' + model_name + '/').exists():
-                os.mkdir('model/' + model_name + '/')
+            if not Path('models/').exists():
+                os.mkdir('models')
+                os.mkdir('models/' + model_name)
 
-            model_path = ('model/' + model_name + '/')
+            model_path = ('models/' + model_name + '/')
 
             with open(model_path + model_name + '.txt', 'wb') as source_file:
                 for f in read_files:
@@ -69,7 +70,7 @@ if not option == 'q':
         to_train = input(': ')
         if to_train == 'q':
             sys.exit()
-        choice = '1'
+        choice = '2'
 
     # Training
     if choice == '2':
@@ -79,7 +80,7 @@ if not option == 'q':
             print('What is the name of the model?')
             model_name = input(': ')
             print()
-            model_path = ('model/' + model_name + '/')
+            model_path = ('models/' + model_name + '/')
             model_verify = Path(model_path + model_name + '.h5')
 
             while not model_verify.is_file():
@@ -87,7 +88,7 @@ if not option == 'q':
                 print('Are you sure you typed it correctly?')
                 print('Try again, or type "q" to exit.')
                 model_name = input(': ')
-                model_path = ('model/' + model_name + '/')
+                model_path = ('models/' + model_name + '/')
                 model_verify = Path(model_path + model_name + '.h5')
                 print()
                 if model_name == 'q':
@@ -103,7 +104,7 @@ if not option == 'q':
         if train_config == 'q':
             sys.exit()
 
-        while train_config not in [1, 2]:
+        while not train_config in ['1', '2']:
             print('Please specify the device.')
             print('Or type "q" to exit.')
             train_config = input(': ')

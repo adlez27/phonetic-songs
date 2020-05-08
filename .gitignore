@@ -1,3 +1,6 @@
 /in
 /out
+/charts
 *.todo
+.google-cookie
+token.txt

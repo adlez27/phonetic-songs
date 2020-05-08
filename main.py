@@ -8,11 +8,9 @@ whenever the dependencies change.
 import os
 import sys
 
-print('installing dependencies...')
-os.system('pip3 install -r requirements.txt')
-
-os.system('cls' if os.name == 'nt' else 'clear')
-print('dependencies installed...')
+print('Installing dependencies...')
+os.system('pip3 -q install -r requirements.txt')
+print('Dependencies installed...')
 print()
 print('Welcome to The Phonetic Song Project.')
 print('If you encounter any bugs, feel free to report them at '
@@ -21,6 +19,7 @@ print('What would you like to do?')
 print('1. Fetch Lyrics')
 print('2. Convert Lyrics')
 print('3. Fetch Billboard Charts')
+print('4. Train Model (This may take a while)')
 print('Type "q" to exit.')
 forward = input(': ')
 
@@ -34,6 +33,9 @@ while forward != 'q':
     if forward == '3':
         os.system('python3 charts.py')
 
+    if forward == '4':
+        os.system('python3 training.py')
+
     print()
     print('Would you like to continue?')
     print('1. Fetch Lyrics')
@@ -43,5 +45,5 @@ while forward != 'q':
     forward = input(': ')
 
 
-print('Thanks for using.')
+print('Have a good day!')
 sys.exit()

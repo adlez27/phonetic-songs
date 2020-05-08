@@ -4,6 +4,11 @@ preprocesses them and the output files are placed in
 the /data directory. It then trains a model based
 on the the data in /data and outputs a model in
 /model which can then be used for samples.
+
+Currently only compatible with pytorch 1.1 so download
+that version.
+
+https://pytorch.org/get-started/previous-versions/#v110
 """
 
 import os
@@ -75,6 +80,5 @@ if not option == 'q':
                   '--checkpoint-name model/model '
                   '--device cuda')
         print('Training complete.')
-
 
 sys.exit()

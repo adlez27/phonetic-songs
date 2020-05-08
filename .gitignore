@@ -1,7 +1,8 @@
 /in
 /out
 /charts
-/model
+/models
+/samples
 *.todo
 .google-cookie
 token.txt

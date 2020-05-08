@@ -25,11 +25,13 @@ Phoneme | Description | Example words | Notes
 ``U` `` | rhotacized near-close back rounded vowel | poor<br>``p U` `` | Usually `U@` in non-rhotic accents
 `u` | close back rounded vowel | boom `b u m`
 `aI` | diphthong of open front unrounded vowel to near-close front unrounded vowel | bye<br>`b aI` | Transcribe as `a` when coda is dropped or delayed
+``aI` `` | rhotacized diphthong of open front unrounded vowel to near-close front unrounded vowel | fire<br>``f aI` `` | Single syllable variant of `aI 3`
 `eI` | diphthong of close-mid front unrounded vowel to near-close front unrounded vowel | bay<br>`b eI` | Transcribe as `e` when coda is dropped or delayed
 `OI` | diphthong of open-mid back rounded vowel to near-close front unrounded vowel | boy<br>`b OI` | Transcribe as `O` when coda is dropped or delayed
 `oU` | diphthong of close-mid back rounded vowel to near-close back rounded vowel | no<br>`n oU` | May sound like `@U` depending on the singer's accent. Transcribe with first vowel only when coda is dropped or delayed
 `aU` | diphthong of open front unrounded vowel to near-close back rounded vowel | how<br>`h aU` | Transcribe as `a` when coda is dropped or delayed
 `aU_~` | nasalized diphthong of open front unrounded vowel to near-close back rounded vowel | pound<br>`p aU_~ n d` | Occasional allophone of `aU` before nasal consonants. Transcribe as `a_~` when coda is dropped or delayed
+``aU` `` | rhotacized diphthong of open front unrounded vowel to near-close back rounded vowel | power<br>``p_h aU` `` | Single syllable variant of `aU 3`
 `5_=` | syllabic velarized alveolar approximant | pull<br>`p 5_=`
 `m_=` | syllabic bilabial nasal | get 'em<br>`g E 4 m_=` | Short, unstressed syllables
 `n_=` | syllabic alveolar nasal | gettin'<br>`g E t_} n_=` | Short, unstressed syllables

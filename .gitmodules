@@ -1,0 +1,6 @@
+[submodule "torch-rnn"]
+	path = torch-rnn
+	url = https://github.com/jcjohnson/torch-rnn
+[submodule "pytorch-rnn"]
+	path = pytorch-rnn
+	url = https://github.com/antihutka/pytorch-rnn

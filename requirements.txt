@@ -3,3 +3,4 @@ billboard.py
 tswift
 pronouncing
 pyyaml
+h5py

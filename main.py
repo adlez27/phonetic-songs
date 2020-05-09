@@ -20,7 +20,6 @@ print('1. Fetch Lyrics')
 print('2. Convert Lyrics')
 print('3. Fetch Billboard Charts')
 print('4. Train Model (This may take a while)')
-print('5. Sample Output from Model')
 print('Type "q" to exit.')
 forward = input(': ')
 
@@ -37,19 +36,14 @@ while forward != 'q':
     if forward == '4':
         os.system('python3 training.py')
 
-    if forward == '5':
-        os.system('python3 sample.py')
-
     print()
     print('Would you like to continue?')
     print('1. Fetch Lyrics')
     print('2. Convert Lyrics')
     print('3. Fetch Billboard Charts')
-    print('4. Train Model (This may take a while)')
-    print('5. Sample Output from Model')
     print('Type "q" to exit.')
     forward = input(': ')
 
-print('Have a good day!')
 
+print('Have a good day!')
 sys.exit()

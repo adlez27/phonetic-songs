@@ -22,7 +22,7 @@ print()
 # save to sample in sample/ or something
 
 if not option == 'q':
-    print('Type in the name of the model.')
+    print('Tpye in the name of the model.')
     model_name = input(': ')
     print()
 
@@ -71,33 +71,31 @@ if not option == 'q':
               'so choose a resonable amount.')
         print('This value is in bytes. The default is 65536 B (64KB).')
         print('Do you want to specify MB or KB? Press enter to accept default')
-        print('1. KB')
-        print('2. MB')
+        print('1. MB')
+        print('2. KB')
         size_option = input(': ')
         print()
 
         if size_option == '1':
             mb_size = input('Input size: ')
             max_size = mb_size * 1024
-            print(max_size)
-            input()
 
         if size_option == '2':
-            max_size = input('Input size:')
+            max_size = input('Input size: ')
             print()
 
         if size_option == '':
             max_size = '65536'
 
         print('Writing to ' + sample_name + '.txt')
-        with open(sample_path + sample_name + '.txt', 'wb') as sample_file:
+        with open(sample_path + sample_name + '.txt', 'w') as sample_file:
             sample_write = Popen('python3 -B pytorch-rnn/sample.py --checkpoint '
                                  + model_path + model_name + '_' + model_choice +
                                  '.json', stdout=sample_file)
             file_size = 0
             while file_size < int(max_size):
                 file_size = sample_file.tell()
-            if sample_file.tell() > max_size:
+            if sample_file.tell() > int(max_size):
                 Popen.terminate(sample_write)
             sample_file.close()
 

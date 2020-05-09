@@ -41,8 +41,9 @@ if not option == 'q':
         if Path('out/').exists():
             read_files = glob.glob('out/*.txt')
 
-            if not Path('models/').exists():
-                os.mkdir('models')
+            if not Path('models/' + model_name + '/').exists():
+                if not Path('models/').exists():
+                    os.mkdir('models')
                 os.mkdir('models/' + model_name)
 
             model_path = ('models/' + model_name + '/')

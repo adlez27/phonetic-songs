@@ -22,7 +22,7 @@ print()
 # save to sample in sample/ or something
 
 if not option == 'q':
-    print('Tpye in the name of the model.')
+    print('Type in the name of the model.')
     model_name = input(': ')
     print()
 

@@ -52,6 +52,9 @@ if not option == 'q':
                 for f in read_files:
                     with open(f, 'rb') as raw_file:
                         source_file.write(raw_file.read())
+            raw_file.close()
+            source_file.close()
+
 
         print('Source file complete.')
         print()

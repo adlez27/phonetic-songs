@@ -117,6 +117,7 @@ if not option == 'q':
 
         with open('token.txt', 'r') as token:
             genius_token = token.read()
+        token.close()
         headers = {'Authorization': 'Bearer ' + genius_token}
 
         print('You can get the lyrics by searching with the song title'

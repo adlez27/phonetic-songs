@@ -45,7 +45,7 @@ while forward != 'q':
     print('1. Fetch Lyrics')
     print('2. Convert Lyrics')
     print('3. Fetch Billboard Charts')
-    print('4. Train Model (This may take a while)')
+    print('4. Train Model')
     print('5. Sample Output from Model')
     print('Type "q" to exit.')
     forward = input(': ')

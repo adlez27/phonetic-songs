@@ -41,6 +41,7 @@ if permission != 'q':
                 i = i + 1
                 export.write(line)
             export.close()
+        charts_list.close()
 
         print('Downloaded: ' + filename)
 

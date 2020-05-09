@@ -11,7 +11,7 @@ Repo of tools developed as part of the Phonetic Songs project for transcribing s
 2. Rough conversion from words to ARPABET (w/ CMUDict) to X-SAMPA
 3. Have humans correct the transcriptions https://discord.gg/wBAAub6
 4. Use final transcriptions for fun projects, like statistical analysis or UTAU reclist generation
-    * Train a model based on lyrics fetched
+    * Train a model based on lyrics fetched and produce a sample output
       * This requires PyTorch 1.1. Download your flavour [here](https://pytorch.org/get-started/previous-versions/#v110).
 
 To get started, run:

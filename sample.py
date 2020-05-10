@@ -40,7 +40,6 @@ if not option == 'q':
         if model_name == 'q':
             sys.exit()
 
-    # code for sampling here
     print(model_name + ' found.')
     first_model = '0'
     model_count = len(glob.glob1(model_path, '*.0')) - 1
@@ -50,14 +49,14 @@ if not option == 'q':
     model_choice = input(': ')
 
     if not model_choice == 'q':
-        # currently limit length of output by lenght parameter
         if not Path('samples/' + model_name + '/').exists():
-            if not Path ('samples/').exists():
+            if not Path('samples/').exists():
                 os.mkdir('samples')
             os.mkdir('samples/' + model_name)
 
         sample_path = ('samples/' + model_name + '/')
-        if not Path(sample_path + model_name + '_' + model_choice + '_0.txt').exists():
+        if not Path(sample_path + model_name + '_' + model_choice +
+                    '_0.txt').exists():
             sample_name = model_name + '_' + model_choice + '_0'
         else:
             sample_count = len(glob.glob1(sample_path, model_name + '_' +
@@ -67,31 +66,47 @@ if not option == 'q':
             print()
 
         print('How large do you want the ' + sample_name + '.txt to be?')
-        print('This script may take a while to run and uses all available CPU resoucres, '
+        print('This script may take a while to run and uses all available '
+              'CPU resoucres, '
               'so choose a resonable amount.')
         print('This value is in bytes. The default is 65536 B (64KB).')
         print('Do you want to specify MB or KB? Press enter to accept default')
-        print('1. MB')
-        print('2. KB')
+        print('1. KB')
+        print('2. MB')
         size_option = input(': ')
         print()
 
         if size_option == '1':
-            mb_size = input('Input size: ')
-            max_size = mb_size * 1024
-
-        if size_option == '2':
             max_size = input('Input size: ')
             print()
+
+        if size_option == '2':
+            mb_size = input('Input size: ')
+            max_size = mb_size * 1024
 
         if size_option == '':
             max_size = '65536'
 
+        # OMP_NUM_THREADS
+
+        # print('How many threads would you like to use?')
+        # print('It is recommended to use less than all '
+        #       'threads available as causes a slowdown.')
+        # print('Not specifying a value will use all '
+        #       'available threads.')
+        # threads = input(': ')
+
+        # print('Writing to ' + sample_name + '.txt')
+        # with open(sample_path + sample_name + '.txt', 'w') as sample_file:
+        #     sample_write = Popen('set OMP_NUM_THREADS={args.threads} '
+        #                          '&& python3 -B pytorch-rnn/sample.py '
+
         print('Writing to ' + sample_name + '.txt')
         with open(sample_path + sample_name + '.txt', 'w') as sample_file:
-            sample_write = Popen('python3 -B pytorch-rnn/sample.py --checkpoint '
-                                 + model_path + model_name + '_' + model_choice +
-                                 '.json', stdout=sample_file)
+            sample_write = Popen('python3 -B pytorch-rnn/sample.py '
+                                 '--checkpoint ' + model_path
+                                 + model_name + '_' + model_choice
+                                 + '.json', stdout=sample_file)
             file_size = 0
             while file_size < int(max_size):
                 file_size = sample_file.tell()

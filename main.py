@@ -120,10 +120,10 @@ while forward != 'q':
         os.system('python3 charts.py')
 
     if forward == '4':
-        os.system('python3 training.py')
+        os.system('python3 trainer.py')
 
     if forward == '5':
-        os.system('python3 sample.py')
+        os.system('python3 sampler.py')
 
     print()
     print('Would you like to continue?')

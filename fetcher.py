@@ -115,6 +115,16 @@ if not option == 'q':
         base_url = 'https://api.genius.com'
         search_path = '/search'
 
+        token = Path("./token.txt")
+        if not token.exists():
+            print('token.txt does not exist.')
+            print('You don\'t have the token required to use Genius.')
+            print('Visit the site below to get your own token, and follow'
+                  'the instructions to get your own authorisation token.')
+            print('https://docs.genius.com/#/getting-started-h1')
+            print()
+            sys.exit()
+
         with open('token.txt', 'r') as token:
             genius_token = token.read()
         token.close()

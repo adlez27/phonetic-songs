@@ -16,6 +16,14 @@ import sys
 import glob
 from pathlib import Path
 
+# try:
+#     import torch
+#     import torchvision
+# except ImportError:
+#     print('The modules required to run this script are not installed.')
+#     print('Please run "python3 main.py" to install them.')
+#     sys.exit()
+
 print('training.py preprocesses and trains a model based '
       'on lyrics provided.')
 print('Click enter to continue or "q" to exit.')
@@ -29,6 +37,14 @@ if not option == 'q':
     choice = input(': ')
     print()
 
+    while not choice in ['1', '2']:
+        print('Please specify.')
+        print('Or type "q" to exit.')
+        choice = input(': ')
+        if choice == 'q':
+            sys.exit()
+        print()
+
     # Preprocessing
     if choice == '1':
         # Add code to check for if lyrics are rhotic and the
@@ -37,6 +53,14 @@ if not option == 'q':
 
         print('What would you like to name this run?')
         model_name = input(': ')
+
+        while model_name == '':
+            print('Please give it a valid name.')
+            print('Or type "q" to exit.')
+            model_name = input(': ')
+            if model_name == 'q':
+                sys.exit()
+            print()
 
         if Path('out/').exists():
             read_files = glob.glob('out/*.txt')
@@ -228,16 +252,21 @@ if not option == 'q':
         # write model name and number of epochs to a json/csv/yaml file
 
         if train_config == '1':
-            print('How many threads would you like to use?')
-            print('It is recommended to use less than all '
-                  'threads available as causes a slowdown.')
-            print('Not specifying a value will use all '
-                  'available threads.')
-            threads = input(': ')
-            print()
-            print('Training...')
-            os.system('set OMP_NUM_THREADS={args.threads} '
-                      '| python3 -B pytorch-rnn/train.py '
+
+            # OMP_NUM_THREADS
+
+            # print('How many threads would you like to use?')
+            # print('It is recommended to use less than all '
+            #       'threads available as causes a slowdown.')
+            # print('Not specifying a value will use all '
+            #       'available threads.')
+            # threads = input(': ')
+            # print()
+            # print('Training...')
+            # os.system('set OMP_NUM_THREADS=' + threads + ' '
+            #           '&& python3 -B pytorch-rnn/train.py '
+
+            os.system('python3 -B pytorch-rnn/train.py '
                       '--input-h5 ' + model_path + model_name + '.h5 '
                       '--input-json ' + model_path + model_name + '.json '
                       '--batch-size ' + batch_size + ' '

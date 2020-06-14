@@ -1,6 +1,8 @@
 # Phonetic Songs
 Repo of tools developed as part of the Phonetic Songs project for transcribing song lyrics in X-SAMPA
 
+<!-- This project requires Python 3.7.x.  -->
+
 1. Get song lyrics
     * Get songs from Billboard Hot 100
     * Get songs and lyrics from:
@@ -15,4 +17,6 @@ Repo of tools developed as part of the Phonetic Songs project for transcribing s
       * This requires PyTorch 1.1. Download your flavour [here](https://pytorch.org/get-started/previous-versions/#v110).
 
 To get started, run:
+> git clone --recurse-submodules -j2 https://github.com/adlez27/phonetic-songs.git
+
 > python3 main.py

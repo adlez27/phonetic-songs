@@ -7,7 +7,7 @@ from billboard import ChartData
 import yaml
 
 # charts_list = json.loads(open('charts.json').read())
-charts_list = yaml.load(open('charts.yaml').read())
+charts_list = yaml.load(open('charts.yaml').read(), Loader=yaml.FullLoader)
 
 print('This scripts allows you to fetch billboard chart data.')
 print('It downloads the following charts:')
@@ -41,7 +41,6 @@ if permission != 'q':
                 i = i + 1
                 export.write(line)
             export.close()
-        charts_list.close()
 
         print('Downloaded: ' + filename)
 

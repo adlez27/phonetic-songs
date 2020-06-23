@@ -240,22 +240,49 @@ if not option == 'q':
     # AZlyrics
     if option == '3':
         from azapi import AZlyrics
-        az_api = AZlyrics()
+        
+        print('Which search engine would you like to use for the retrevial of lyrics?')
+        print('1. Google')
+        print('2. DuckDuckGo')
+        az_se = input(': ')
+        print()
+
+        while not az_se in ['1', '2']:
+            print('Please specify the search engine.')
+            print('Or type "q" to exit.')
+            az_se = input(': ')
+            print()
+            if az_se == 'q':
+                sys.exit()
+
+        if az_se == '1':
+            az_api = AZlyrics('google')
+
+        if az_se == '2':
+            az_api = AZlyrics('duckduckgo')
+
         print('You can either get the song with the song title and artist'
               'name, or you can search via lyrics.')
         print('Please choose which method you would like to use.')
         print('a. Artist Name + Song Title')
         print('b. Search by lyrics')
         az_option = input(': ')
+        print()
 
         if az_option == 'a':
+            print('If you don\'t remember the name of the artist, you can search by title only.')
             artist_name = input('Type in the name of the artist: ')
             song_title = input('Type in the title of the song: ')
 
-            lyrics = az_api.getLyrics(
-                artist=artist_name, title=song_title, save=False).strip()
+            az_api.artist = artist_name
+            az_api.title = song_title
 
-            filename = (artist_name + ' - ' + song_title + '.txt')
+            # lyrics = az_api.getLyrics(
+            #     artist=artist_name, title=song_title, save=False).strip()
+
+            lyrics = az_api.getLyrics(save=False).strip()
+
+            filename = (az_api.artist + ' - ' + az_api.title + '.txt')
 
             if Path('in/').exists():
                 basepath = Path('in/')

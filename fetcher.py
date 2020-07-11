@@ -22,8 +22,8 @@ class Color:
 
 print('fetcher.py fetches lyrics from various sources. '
       'Please choose which one you would like to use.')
-print('If you experience any bugs, feel free to report '
-      'at https://github.com/adlez27/phonetic-songs')
+print('If you experience any bugs, feel free to open an '
+      'issue at https://github.com/adlez27/phonetic-songs')
 print()
 print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
 print('2. Genius')

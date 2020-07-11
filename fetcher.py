@@ -27,8 +27,7 @@ print('If you experience any bugs, feel free to report '
 print()
 print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
 print('2. Genius')
-print('3. AZLyrics.com (azapi) - ' +
-      Color.UNDERLINE + 'NOT RECOMMENDED' + Color.END)
+print('3. AZLyrics.com (azapi)')
 print('4. VocaDB')
 print('5. UtaiteDB')
 print('6. TouhouDB')
@@ -36,6 +35,12 @@ print('7. Piapro (currently not implemented)')
 print('To close, type "q"')
 option = input(': ')
 print()
+
+if option in ['2', '4', '5', '6', '7']:
+    import requests
+
+if option in ['2', '7']:
+    from bs4 import BeautifulSoup
 
 if not option == 'q':
     # MetroLyrics
@@ -92,9 +97,6 @@ if not option == 'q':
 
     # Genius
     if option == '2':
-        import requests
-        from bs4 import BeautifulSoup
-
         def lyric_fetcher_genius(song_api_path):
             '''Lyric Fetching from Genius using API and HTML scraping'''
             song_url = base_url + song_api_path
@@ -237,10 +239,11 @@ if not option == 'q':
                         export.close()
 
                     print('Downloaded: ' + artist_name + ' - ' + song_title)
+
     # AZlyrics
     if option == '3':
         from azapi import AZlyrics
-        
+
         print('Which search engine would you like to use for the retrevial of lyrics?')
         print('1. Google')
         print('2. DuckDuckGo')
@@ -261,70 +264,36 @@ if not option == 'q':
         if az_se == '2':
             az_api = AZlyrics('duckduckgo')
 
-        print('You can either get the song with the song title and artist'
+        print('You can either get the song with the song title and artist '
               'name, or you can search via lyrics.')
-        print('Please choose which method you would like to use.')
-        print('a. Artist Name + Song Title')
-        print('b. Search by lyrics')
-        az_option = input(': ')
         print()
+        print('If you don\'t remember the name of the artist, you can search by title only.')
+        print('If you want to search by lyrics, put the lyrics in the title field')
+        artist_name = input('Type in the name of the artist: ')
+        song_title = input('Type in the title of the song: ')
 
-        if az_option == 'a':
-            print('If you don\'t remember the name of the artist, you can search by title only.')
-            artist_name = input('Type in the name of the artist: ')
-            song_title = input('Type in the title of the song: ')
+        az_api.artist = artist_name
+        az_api.title = song_title
 
-            az_api.artist = artist_name
-            az_api.title = song_title
+        lyrics = az_api.getLyrics(save=False).strip()
 
-            # lyrics = az_api.getLyrics(
-            #     artist=artist_name, title=song_title, save=False).strip()
+        filename = (az_api.artist + ' - ' + az_api.title + '.txt')
 
-            lyrics = az_api.getLyrics(save=False).strip()
-
-            filename = (az_api.artist + ' - ' + az_api.title + '.txt')
-
+        if Path('in/').exists():
+            basepath = Path('in/')
+        else:
+            os.mkdir('in')
             if Path('in/').exists():
                 basepath = Path('in/')
-            else:
-                os.mkdir('in')
-                if Path('in/').exists():
-                    basepath = Path('in/')
 
-            with open(basepath/filename, 'w', encoding='utf-8') as export:
-                export.write(lyrics)
-                export.close()
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
+            export.write(lyrics)
+            export.close()
 
-            print('Downloaded: ' + artist_name + ' - ' + song_title)
-        if az_option == 'b':
-            search_terms = input('Enter lyrics: ')
-
-            songs = az_api.search(search_terms, category='songs')
-            artist_name = songs[0]['artist']
-            song_title = songs[0]['name']
-            song_url = songs[0]['url']
-
-            lyrics = az_api.getLyrics(url=song_url, save=False).strip()
-
-            filename = (artist_name + ' - ' + song_title + '.txt')
-
-            if Path('in/').exists():
-                basepath = Path('in/')
-            else:
-                os.mkdir('in')
-                if Path('in/').exists():
-                    basepath = Path('in/')
-
-            with open(basepath/filename, 'w', encoding='utf-8') as export:
-                export.write(lyrics)
-                export.close()
-
-            print('Downloaded: ' + artist_name + ' - ' + song_title)
+        print('Downloaded: ' + artist_name + ' - ' + song_title)
 
     # VocaDB
     if option == '4':
-        import requests
-
         vdb_url = 'https://vocadb.net/api/'
         search_type = ['artists', 'songs']
         print('You can get the lyrics by searching with the song title'
@@ -380,8 +349,6 @@ if not option == 'q':
 
     # UtaiteDB
     if option == '5':
-        import requests
-
         udb_url = 'https://utaitedb.net/api/'
         search_type = ['artists', 'songs']
         print('You can get the lyrics by searching with the song title'
@@ -436,8 +403,6 @@ if not option == 'q':
 
     # TouhouDB
     if option == '6':
-        import requests
-
         tdb_url = 'https://touhoudb.com/api/'
         search_type = ['artists', 'songs']
         print('You can get the lyrics by searching with the song title'

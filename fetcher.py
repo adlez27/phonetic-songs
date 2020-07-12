@@ -25,16 +25,19 @@ print('fetcher.py fetches lyrics from various sources. '
 print('If you experience any bugs, feel free to open an '
       'issue at https://github.com/adlez27/phonetic-songs')
 print()
-print(Color.BOLD + '1. MetroLyrics (tswift) - RECOMMENDED' + Color.END)
+print(Color.BOLD + '1. MetroLyrics - RECOMMENDED' + Color.END)
 print('2. Genius')
-print('3. AZLyrics.com (azapi)')
+print('3. AZLyrics.com')
 print('4. VocaDB')
 print('5. UtaiteDB')
 print('6. TouhouDB')
-print('7. Piapro (currently not implemented)')
+print('7. Piapro')
 print('To close, type "q"')
 option = input(': ')
 print()
+
+while not option in ['1', '2', '3', '4', '5', '6', '7', 'q']:
+    option = input('Please put in a valid option: ')
 
 if option in ['2', '4', '5', '6', '7']:
     import requests
@@ -244,7 +247,8 @@ if not option == 'q':
     if option == '3':
         from azapi import AZlyrics
 
-        print('Which search engine would you like to use for the retrevial of lyrics?')
+        print('Which search engine would you like to use for the retrevial '
+              'of lyrics?')
         print('1. Google')
         print('2. DuckDuckGo')
         az_se = input(': ')
@@ -267,8 +271,10 @@ if not option == 'q':
         print('You can either get the song with the song title and artist '
               'name, or you can search via lyrics.')
         print()
-        print('If you don\'t remember the name of the artist, you can search by title only.')
-        print('If you want to search by lyrics, put the lyrics in the title field')
+        print('If you don\'t remember the name of the artist, you can '
+              'search by title only.')
+        print('If you want to search by lyrics, put the lyrics in the '
+              'title field')
         artist_name = input('Type in the name of the artist: ')
         song_title = input('Type in the title of the song: ')
 
@@ -457,5 +463,109 @@ if not option == 'q':
 
     # Piapro
     if option == '7':
-        print('This feature is not yet implemented, please try again later.')
+        # Adapted: https://realpython.com/beautiful-soup-web-scraper-python/
+        import json
+        site_url = 'https://piapro.jp'
+        search_path = '/search/?view=text&keyword='
+
+        print('You can get lyrics by searching the song title or the lyrics.')
+        search_terms = input('Please enter the song title or lyrics: ')
+        print()
+        print('How many results do you want to choose from? The default is 5.')
+        max_list = input('Choose between 1 and 26: ')
+
+        while not max_list in ['', int]:
+            max_list = input('Please input a number: ')
+
+        if max_list == '':
+            max_list = 5
+        else:
+            max_list = int(max_list)
+
+        while not 0 < max_list < 27:
+            print('Please choose a valid number. If you want to quit, type "q".')
+            max_list = input(': ')
+            if max_list != 'q':
+                max_list = int(max_list)
+            if max_list == 'q':
+                sys.exit()
+
+        response = requests.get(site_url + search_path + search_terms)
+
+        while response == '':
+            print('The song you requested was not found.')
+            print('Do you want to try again or do you want to exit?')
+            print('Type "y" to continue, and "q" to exit.')
+            piapro_option = input('y/q: ')
+
+            while not piapro_option in ['y', 'q']:
+                print('Please specify your option.')
+                piapro_option = input(': ')
+
+                if piapro_option == 'y':
+                    search_terms = input('Please enter the song title '
+                                         'or lyrics: ')
+                    response = requests.get(site_url + search_path +
+                                            search_terms)
+                    print()
+
+                if piapro_option == 'q':
+                    sys.exit()
+
+        answer = BeautifulSoup(response.content, 'html.parser')
+
+        results = answer.find(id='index_box')
+        entries = results.find_all('li', attrs={'class':'_item'})
+        entry_count = 0
+        entry_array = []
+
+        for i, entry in enumerate(entries, 1):
+            entry_count = entry_count + 1
+            title = entry.find('td', attrs={'class':'title'})
+            song_link = title.find('a')['href']
+            artist = entry.find('td', attrs={'class':'username'})
+            opening = entry.find('td', attrs={'class':'opening'})
+            item = {'id': i,
+                    'artist': artist.text,
+                    'title': title.text,
+                    'song_link': song_link}
+            entry_array.append(item)
+            print(str(i) + '. ' + artist.text + ' - ' + title.text)
+            print(Color.BOLD + 'Opening Lyrics' + Color.END)
+            print(opening.text)
+            if entry_count == max_list:
+                break
+
+        print('Which song would you like to get?')
+        song_choice = input('Choose between 1 and ' + str(entry_count) + ': ')
+        song_choice = int(song_choice) - 1
+
+        entry_array = json.dumps(entry_array)
+        song_dict = json.loads(entry_array)[song_choice]
+        artist_name = song_dict['artist']
+        song_title = song_dict['title']
+        song_link = song_dict['song_link']
+
+        song_url = site_url + song_link
+        song_response = requests.get(song_url)
+        song_answer = BeautifulSoup(song_response.content, 'html.parser')
+        song_results = song_answer.find(id='main')
+        song_lyrics = song_results.find('p', attrs={'class':'main_txt'})
+        lyrics = song_lyrics.text
+
+        filename = (artist_name + ' - ' + song_title + '.txt')
+
+        if Path('in/').exists():
+            basepath = Path('in/')
+        else:
+            os.mkdir('in')
+            if Path('in/').exists():
+                basepath = Path('in/')
+
+        with open(basepath/filename, 'w', encoding='utf-8') as export:
+            export.write(lyrics)
+            export.close()
+
+        print('Downloaded: ' + artist_name + ' - ' + song_title)
+
 sys.exit()

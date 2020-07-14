@@ -1,6 +1,6 @@
-azapi
-billboard.py
-tswift
-pronouncing
-pyyaml
-h5py
+azapi==3.0.1
+billboard.py==6.1.0
+tswift==0.6.0
+pronouncing==0.2.0
+pyyaml==5.3.1
+h5py==2.10.0

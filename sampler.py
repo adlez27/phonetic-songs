@@ -9,13 +9,13 @@ import glob
 from pathlib import Path
 from subprocess import Popen
 
-# try:
-#     import torch
-#     import torchvision
-# except ImportError:
-#     print('The modules required to run this script are not installed.')
-#     print('Please run "python3 main.py" to install them.')
-#     sys.exit()
+try:
+    import torch
+    import torchvision
+except ImportError:
+    print('The modules required to run this script are not installed.')
+    print('Please run "python3 main.py" and then option 5 to install them.')
+    sys.exit()
 
 print('sample.py takes a model and generates sample output.')
 print('If you do not have a model file, close and run training.py')

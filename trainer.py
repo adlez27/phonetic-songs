@@ -16,13 +16,13 @@ import sys
 import glob
 from pathlib import Path
 
-# try:
-#     import torch
-#     import torchvision
-# except ImportError:
-#     print('The modules required to run this script are not installed.')
-#     print('Please run "python3 main.py" to install them.')
-#     sys.exit()
+try:
+    import torch
+    import torchvision
+except ImportError:
+    print('The modules required to run this script are not installed.')
+    print('Please run "python3 main.py" and then option 4 to install them.')
+    sys.exit()
 
 print('training.py preprocesses and trains a model based '
       'on lyrics provided.')

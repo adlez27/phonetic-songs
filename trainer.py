@@ -256,7 +256,7 @@ if not option == 'q':
             #     torch.cuda.init()
             # except AssertionError:
             #     print('pyTorch  ')
-            torch_cuda = torch.cuda.init()
+            # torch_cuda = torch.cuda.init()
             torch_cudaIs = torch.cuda.is_initialized()
             cuda_capable = torch.cuda.is_available()
             if cuda_capable is False:

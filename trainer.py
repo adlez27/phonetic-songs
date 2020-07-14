@@ -252,12 +252,6 @@ if not option == 'q':
         # write model name and number of epochs to a json/csv/yaml file
 
         if train_config == '2':
-            # try:
-            #     torch.cuda.init()
-            # except AssertionError:
-            #     print('pyTorch  ')
-            # torch_cuda = torch.cuda.init()
-            torch_cudaIs = torch.cuda.is_initialized()
             cuda_capable = torch.cuda.is_available()
             if cuda_capable is False:
                 print('This system is not CUDA-capable, enter "y" to '
@@ -272,6 +266,19 @@ if not option == 'q':
                     print('Fallback to CPU...')
                     train_config = '1'
             else:
+                try:
+                    torch.cuda.init()
+                except AssertionError:
+                    print('PyTorch is not compiled with CUDA enabled.')
+                    torch_cuda = input('Install the releveant version '
+                                       'from main.py or type "y" to '
+                                       'fallback on CPU mode, press '
+                                       'enter to exit.')
+                    if torch_cuda == 'y':
+                        train_config = '1'
+                    else:
+                        sys.exit()
+
                 print('Training...')
                 os.system('python3 -B pytorch-rnn/train.py '
                         '--input-h5 ' + model_path + model_name + '.h5 '

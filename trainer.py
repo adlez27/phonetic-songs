@@ -255,7 +255,7 @@ if not option == 'q':
             cuda_capable = torch.cuda.is_available()
             if cuda_capable is False:
                 print('This system is not CUDA-capable, enter "y" to '
-                    'fallback on CPU mode, or enter "q" to exit.')
+                      'fallback on CPU mode, or enter "q" to exit.')
                 fallback_continue = input('y/q: ')
                 while not fallback_continue in ['y', 'q']:
                     fallback_continue = input('Please enter a valid choice: ')
@@ -281,22 +281,22 @@ if not option == 'q':
 
                 print('Training...')
                 os.system('python3 -B pytorch-rnn/train.py '
-                        '--input-h5 ' + model_path + model_name + '.h5 '
-                        '--input-json ' + model_path + model_name + '.json '
-                        '--batch-size ' + batch_size + ' '
-                        '--seq-length ' + seq_length + ' '
-                        '--num-epochs ' + num_epochs + ' '
-                        '--num-layers ' + num_layers + ' '
-                        '--embedding-dim ' + embedding_dim + ' '
-                        '--hidden-dim ' + hidden_dim + ' '
-                        '--zoneout ' + zoneout + ' '
-                        '--dropout ' + dropout + ' '
-                        '--learning-rate ' + learning_rate + ' '
-                        '--lrdecay-every ' + lr_decay_every + ' '
-                        '--lrdecay-factor ' + lr_decay_factor + ' '
-                        '--grad-clip ' + grad_clip + ' '
-                        '--checkpoint-name ' + model_path + model_name + ' '
-                        '--device cuda')
+                          '--input-h5 ' + model_path + model_name + '.h5 '
+                          '--input-json ' + model_path + model_name + '.json '
+                          '--batch-size ' + batch_size + ' '
+                          '--seq-length ' + seq_length + ' '
+                          '--num-epochs ' + num_epochs + ' '
+                          '--num-layers ' + num_layers + ' '
+                          '--embedding-dim ' + embedding_dim + ' '
+                          '--hidden-dim ' + hidden_dim + ' '
+                          '--zoneout ' + zoneout + ' '
+                          '--dropout ' + dropout + ' '
+                          '--learning-rate ' + learning_rate + ' '
+                          '--lrdecay-every ' + lr_decay_every + ' '
+                          '--lrdecay-factor ' + lr_decay_factor + ' '
+                          '--grad-clip ' + grad_clip + ' '
+                          '--checkpoint-name ' + model_path + model_name + ' '
+                          '--device cuda')
                 print('Training complete.')
 
         if train_config == '1':

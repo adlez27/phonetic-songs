@@ -8,7 +8,7 @@ import os
 import sys
 
 print('Installing dependencies...')
-os.system('python3 -m pip install -r requirements.txt')
+os.system('pip3 install -r requirements.txt')
 
 print('Dependencies installed.')
 print()
@@ -78,7 +78,7 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install torch==1.5.1+cpu torchvision==0.6.1+cpu '
+                            'pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu '
                             '-f https://download.pytorch.org/whl/torch_stable.html')
                     if torch_ver == 'b':
                         print('This would download torch and torchvision wheels '
@@ -86,7 +86,7 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
+                            'pip3 install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
                             '-f https://download.pytorch.org/whl/torch_stable.html')
 
                 # MacOS
@@ -98,7 +98,7 @@ while forward != 'q':
                     print('This may take a while depending on your internet '
                           'connection.')
                     os.system(
-                        'python3 -m pip install torch torchvision')
+                        'pip3 install torch==1.5.1 torchvision==0.6.1')
 
                 # Windows
                 if os_choice == '3':
@@ -114,7 +114,7 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install torch==1.5.1+cpu torchvision==0.6.1+cpu '
+                            'pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu '
                             '-f https://download.pytorch.org/whl/torch_stable.html')
                     if torch_ver == 'b':
                         print('This would download torch and torchvision wheels '
@@ -122,7 +122,7 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
+                            'pip3 install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
                             '-f https://download.pytorch.org/whl/torch_stable.html')
 
     if forward == '4':

@@ -8,7 +8,7 @@ import os
 import sys
 
 print('Installing dependencies...')
-os.system('python3 -m pip install -r requirements.txt')
+os.system('pip3 install -r requirements.txt')
 
 print('Dependencies installed.')
 print()
@@ -40,8 +40,8 @@ while forward != 'q':
             import torch
             import torchvision
         except ImportError:
-            print('torch and torchvision are required for training '
-                  'and sampling models.')
+            print('torch and/or torchvision are missing and are '
+                  'required for training and sampling models.')
             print('Are you going to be training and sampling models?')
             torch_choice = input('y/n: ')
             print()
@@ -78,18 +78,16 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cpu/torch-1.1.0-cp37-cp37m-linux_x86_64.whl')
-                        os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cpu/torchvision-0.3.0-cp37-cp37m-linux_x86_64.whl')
+                            'pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu '
+                            '-f https://download.pytorch.org/whl/torch_stable.html')
                     if torch_ver == 'b':
                         print('This would download torch and torchvision wheels '
                               'and install them automatically.')
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cu90/torch-1.1.0-cp37-cp37m-linux_x86_64.whl')
-                        os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cu90/torchvision-0.3.0-cp37-cp37m-manylinux1_x86_64.whl')
+                            'pip3 install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
+                            '-f https://download.pytorch.org/whl/torch_stable.html')
 
                 # MacOS
                 if os_choice == '2':
@@ -100,7 +98,7 @@ while forward != 'q':
                     print('This may take a while depending on your internet '
                           'connection.')
                     os.system(
-                        'python3 -m pip install torch==1.1.0 torchvision==0.3.0')
+                        'pip3 install torch==1.5.1 torchvision==0.6.1')
 
                 # Windows
                 if os_choice == '3':
@@ -116,18 +114,16 @@ while forward != 'q':
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cpu/torch-1.1.0-cp37-cp37m-win_amd64.whl')
-                        os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cpu/torchvision-0.3.0-cp37-cp37m-win_amd64.whl')
+                            'pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu '
+                            '-f https://download.pytorch.org/whl/torch_stable.html')
                     if torch_ver == 'b':
                         print('This would download torch and torchvision wheels '
                               'and install them automatically.')
                         print('This may take a while depending on your internet '
                               'connection.')
                         os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cu90/torch-1.1.0-cp37-cp37m-win_amd64.whl')
-                        os.system(
-                            'python3 -m pip install https://download.pytorch.org/whl/cu90/torchvision-0.3.0-cp37-cp37m-win_amd64.whl')
+                            'pip3 install torch==1.5.1+cu92 torchvision==0.6.1+cu92 '
+                            '-f https://download.pytorch.org/whl/torch_stable.html')
 
     if forward == '4':
         os.system('python3 trainer.py')

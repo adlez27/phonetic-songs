@@ -4,3 +4,4 @@ tswift==0.7.0
 pronouncing==0.2.0
 pyyaml==5.4.1
 h5py==3.2.1
+six

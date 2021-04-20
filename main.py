@@ -8,7 +8,7 @@ import os
 import sys
 
 print('Installing dependencies...')
-os.system('pip3 install -r requirements.txt')
+os.system('python3 -m pip install -r requirements.txt')
 
 print('Dependencies installed.')
 print()
@@ -77,14 +77,14 @@ while forward != 'q':
                     print('This may take a while depending on your internet '
                           'connection.')
                     os.system(
-                        'pip3 install -r torch-winux-cpu.txt')
+                        'python3 -m pip install -r torch-winux-cpu.txt')
                 if torch_ver == 'b':
                     print('This would download torch and torchvision wheels '
                           'and install them automatically.')
                     print('This may take a while depending on your internet '
                           'connection.')
                     os.system(
-                        'pip3 install -r torch-winux-cuda92.txt')
+                        'python3 -m pip install -r torch-winux-cuda92.txt')
 
             # MacOS
             if os_choice == '2':
@@ -95,7 +95,7 @@ while forward != 'q':
                 print('This may take a while depending on your internet '
                       'connection.')
                 os.system(
-                    'pip3 install -r torch-mac-cpu.txt')
+                    'python3 -m pip install -r torch-mac-cpu.txt')
 
     if forward == '4':
         os.system('python3 trainer.py')

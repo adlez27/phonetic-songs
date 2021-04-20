@@ -35,11 +35,14 @@ while forward != 'q':
     if forward == '3':
         os.system('python3 charts.py')
 
-    if forward == '4' or '5':
+    if forward in ['4', '5']:
         print('torch and/or torchvision may be missing or may '
               'be out of date and are required for training '
               'and sampling models.')
-        print('Are you going to be training and sampling models?')
+        print('Choosing "yes" will update the version of torch '
+              'used to the required version.')
+        print('Choosing "no" will bypass the installation check '
+              'sending you to the chosen script.')
         torch_choice = input('y/n: ')
         print()
 

@@ -7,10 +7,10 @@ Created on Wed May  5 16:15:07 2021
 
 from collections import Counter
 import glob
-import os
+from pathlib import Path
 
-os.chdir(r'C:\Users\HYDRO\Desktop\2021 HUD\CODE FOR UTAU\Phonetic Lyrics\finished')
-myFiles = glob.glob('*.txt')
+if Path('finished/').exists():
+    myFiles = glob.glob('finished/*.txt')
 
 def txtreader():
     count = 0
@@ -25,4 +25,4 @@ def txtreader():
         count += 1
         length -= 1
         print(result)
-        print("")
+        print("\n")

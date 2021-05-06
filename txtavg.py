@@ -7,11 +7,11 @@ Created on Wed May  5 16:15:09 2021
 
 from collections import Counter
 import glob
-import os
+from pathlib import Path
 
-os.chdir(r'C:\Users\HYDRO\Desktop\2021 HUD\CODE FOR UTAU\Phonetic Lyrics\finished')
-myFiles = glob.glob('*.txt')
-
+if Path('finished/').exists():
+    myFiles = glob.glob('finished/*.txt')
+    
 def txtavg():
     count = 0
     length = len(myFiles)
@@ -19,12 +19,12 @@ def txtavg():
     while length != 0:
         txt = open(myFiles[count])
         content = txt.read()
-        merger += ' '
+        merger += '\n'
         merger += content
         count += 1
         length -= 1
     nonewline = merger.replace('\n', ' ')
     line = nonewline.split(' ')
-    print("")
+    print("\n")
     print("Average across all txt documents")
     print(Counter(line))

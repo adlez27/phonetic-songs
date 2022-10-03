@@ -278,6 +278,17 @@ if not option == 'q':
                         train_config = '1'
                     else:
                         sys.exit()
+                else:
+                    try:
+                        import ptrnn_cuda
+                    except ImportError as e:
+                        input('ptrnn_cpp has not been compiled for this system. '
+                              'Press the enter key for an attempted install.')
+                        ptrnn_cpp_path = 'pytorch-rnn/extension_cuda'
+                        os.system('python3 -m pip install ' + ptrnn_cpp_path)
+                    else:
+                        print('ptrnn_cuda is installed.')
+                        print('')
 
                 print('Training...')
                 os.system('python3 -B pytorch-rnn/train.py '
@@ -300,6 +311,16 @@ if not option == 'q':
                 print('Training complete.')
 
         if train_config == '1':
+            try:
+                import ptrnn_cpp
+            except ImportError as e:
+                input('ptrnn_cpp has not been compiled for this system. Press '
+                      'the enter key for an attempted install.')
+                ptrnn_cpp_path = 'pytorch-rnn/extension'
+                os.system('python3 -m pip install ' + ptrnn_cpp_path)
+            else:
+                print('ptrnn_cpp is installed.')
+                print('')
 
             # OMP_NUM_THREADS
 
